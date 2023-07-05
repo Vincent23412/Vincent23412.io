@@ -95,6 +95,7 @@
 .button_text{
     padding-left: 10px;
     text-align: center;
+    padding-top: 15%;
 }
 @media (max-width:1200px){
     .top_picture{
