@@ -5,7 +5,6 @@
 
 }
 .left{
-    background-color: red;
     flex: none;
     width: 80%;
     font-size: 20px;
@@ -14,11 +13,9 @@
 .right{
     display: flex;
     justify-content: flex-end;
-    background-color: yellow;
     flex: auto;
 }
 .item{
-    background-color: white;
     flex:auto;
     text-align: center;
     display: block;
@@ -40,13 +37,11 @@
     font-size: 30px;
 }
 .content{
-    background-color: greenyellow;
-    width:100%;
+    width:1200px;
     height:450px;
 }
 
 .top_content{
-    background-color: blue;
     margin-top: 10px;
     display: flex;
     justify-content: center;
@@ -58,20 +53,20 @@
     margin-right: 10px;
     margin-left: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items:center;
     margin-top: 10px;
-
+    width: 375px;
 }
 .top_picture_3{
     background-color: brown;
     margin-right: 10px;
     margin-left: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     margin-top: 10px;
-
+    width: 375px;
 }
 .top{
     max-width: 100%;
@@ -87,6 +82,7 @@
     display: block;
     justify-content: center;
     margin-top: 10px;
+    width: 177px;
 }
 .button{
     max-width: 100%;
@@ -95,6 +91,7 @@
 .button_text{
     padding-left: 10px;
     text-align: center;
+    padding-top: 15%;
 }
 @media (max-width:1200px){
     .top_picture{
