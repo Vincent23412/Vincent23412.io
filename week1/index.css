@@ -71,6 +71,7 @@
 .top{
     max-width: 100%;
     max-height: 100%;
+    object-fit: cover;
 }
 
 
@@ -87,6 +88,7 @@
 .button{
     max-width: 100%;
     max-height: 100%;
+    object-fit: cover;
 }
 .button_text{
     padding-left: 10px;
