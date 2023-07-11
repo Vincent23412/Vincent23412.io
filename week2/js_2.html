@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>js_2</title>
+    </head>
+    <body>
+        <script>
+            // # Using a loop to complete functions below to calculate the sum of bonus of all employees in
+            // # TWD and print it.
+            // # 1. Bonus should depend on salary, performance and role fields. Define your own rules
+            // # and calculate a bonus for each employee based on it.
+            // # 2. The sum of bonus of all employees cannot exceed 10000 TWD based on your rules
+            // # and example data.
+            // # 3. You can assume the USD to TWD Exchange Rate is 30.
+            // # 4. Salary is default to TWD if there is no specific mark
+
+            var per_bouns = {
+                "above average":0.1,
+                'average':0.05,
+                'below average':0.01
+            }
+            var rol_bouns = {
+                'Engineer':0.05,
+                'CEO':0.1,
+                'Sales':0.01
+            }
+
+            
+            function calculateSumOfBonus(data){
+                // write down your bonus rule in comments
+                // your code here, based on your own rules
+                var info = data['employees'];
+                for (i in info){
+                    var own_salary = info[i]['salary'];
+                    if (typeof(own_salary)=='string'){
+                        own_salary = own_salary.replace(',','');
+                        if (own_salary.search('USD') != -1) {
+                            own_salary = own_salary.slice(0,-3);
+                            own_salary = Number(own_salary) * 30 ;
+                        }
+                        own_salary = Number(own_salary);
+                    }
+                    var salary = own_salary * (1 + per_bouns[info[i]['performance']]) *(1 + rol_bouns[info[i]['role']]);
+                    console.log(salary)
+                }
+            }
+            calculateSumOfBonus({
+                "employees":[
+                    {
+                    "name":"John",
+                    "salary":"1000USD",
+                    "performance":"above average",
+                    "role":"Engineer"
+                    },
+                    {
+                    "name":"Bob",
+                    "salary":60000,
+                    "performance":"average",
+                    "role":"CEO"
+                    },
+                    {
+                    "name":"Jenny",
+                    "salary":"50,000",
+                    "performance":"below average",
+                    "role":"Sales"
+                    }
+                ]
+            }); // call calculateSumOfBonus function
+        </script>
+    </body>
+</html>
