@@ -3,28 +3,43 @@
 # middle name is defined as the second word
 
 
-def func(*data):
-    word_str = ''
-    for i in data :
-        word_str += i[1:]
-    ans = []
-    for i in data :
-        unique = True
-        for j in i :
-            if word_str.count(j) > 1 :
-                unique = False
-        ans.append(unique)
+# def func(*data):
+#     word_str = ''
+#     for i in data :
+#         word_str += i[1:]
+#     ans = []
+#     for i in data :
+#         unique = True
+#         for j in i :
+#             if word_str.count(j) > 1 :
+#                 unique = False
+#         ans.append(unique)
     
-    for i in range(len(data)) :
-        if len(data[i][1:]) > len(set(data[i][1:])) :
-            ans[i] = True
-    for i in range(len(data)) :
-        if ans[i] == True :
-            print(data[i])
+#     for i in range(len(data)) :
+#         if len(data[i][1:]) > len(set(data[i][1:])) :
+#             ans[i] = True
+#     for i in range(len(data)) :
+#         if ans[i] == True :
+#             print(data[i])
+#     if set(ans) == {False} :
+#         print('沒有')
+
+
+def func(*data):
+    middle = []
+    for i in data :
+        middle.append(i[1])
+    ans = []
+    for i in range(len(middle)) :
+        if middle.count(middle[i]) == 1 :
+            ans.append(True)
+        else :
+            ans.append(False)
     if set(ans) == {False} :
         print('沒有')
-
-
+    for i in range(len(ans)) :
+        if ans[i] == True :
+            print(data[i])
 
 
 # your code here

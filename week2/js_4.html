@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>js_3</title>
+        <title>js_4</title>
     </head>
     <body>
         <script>
             // # There is a number sequence: 0, 4, 3, 7, 6, 10, 9, 13, 12, 16, 15, ...
             // # Find out the nth term in this sequence
 
-            var num = [0, 4, 3, 7, 6, 10, 9, 13, 12, 16, 15]
 
-            function getNumber(index){  
-                    console.log(num[index]) 
-
-                    // your code here
+            function getNumber(index){
+                var list = [0];
+                for (let i = 0; i<index; i++){
+                    list.push(0);
+                    if (i%2==0){
+                        list[i+1] = list[i] + 4; 
+                    }else{
+                        list[i+1] = list[i] - 1;
                     }
+                }  
+                console.log(list[list.length-1]);
+                }
+
             getNumber(1); // print 4
             getNumber(5); // print 10
             getNumber(10); // print 15

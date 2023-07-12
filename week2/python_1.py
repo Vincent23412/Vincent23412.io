@@ -1,7 +1,6 @@
 # We have example messages from 6 persons in JSON format. There are at least 3 persons
 # who are older than 17. Using a loop to find out those who are most probably older than 17
 # years old based on example messages. Print their names in the console
-import re
 
 def find_and_print(messages):
     # write down your judgment rules in comments
@@ -9,9 +8,10 @@ def find_and_print(messages):
 
     old = []
     for name,describe in messages.items() :
-        numbers = re.findall(r'\d+', describe)
+        # numbers = re.findall(r'\d+', describe)
+        numbers = find_num(describe)
         if numbers :
-            if int(numbers[0]) > 17 :
+            if numbers > 17 :
                 old.append(name)
         if 'vote' in describe or 'legal' in describe :
             old.append(name)
@@ -19,6 +19,12 @@ def find_and_print(messages):
     print(old)
     return name
             
+def find_num(word):
+    for i in word.split() :
+        try :
+            return int(i)
+        except :
+            pass
 
 
 find_and_print({

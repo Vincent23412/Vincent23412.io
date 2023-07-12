@@ -26,9 +26,9 @@ def calculate_sum_of_bonus(data):
         final_sum = 0
         i['salary'] = str(i['salary']).replace(',','')
         if 'USD' in str(i['salary']) :
-            final_sum = int(i['salary'][:-3]) * 30 * (1+bouns_performance[i['performance']]) * (1+bouns_role[i['role']])
+            final_sum = int(i['salary'][:-3]) * 30 * bouns_performance[i['performance']] + int(i['salary'][:-3]) * 30 * bouns_role[i['role']]
         else :
-            final_sum = int(i['salary']) * (1+bouns_performance[i['performance']]) * (1+bouns_role[i['role']])
+            final_sum = int(i['salary']) * bouns_performance[i['performance']] +  int(i['salary']) *bouns_role[i['role']]
 
         print(final_sum)
 calculate_sum_of_bonus({

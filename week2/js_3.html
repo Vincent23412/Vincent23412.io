@@ -9,36 +9,26 @@
             // # every input is a Chinese name with 2 ~ 3 words. If there are only 2 words in a name, the
             // # middle name is defined as the second word
             function func(...data){
-                        // your code here
-                        var name_list = []
-                        for (var i of data){
-                            name_list.push(i.slice(1));
-                        }
-                        word = name_list.join().replace(/,/g,'');
-                        var ans_list = [];
-                        for (i of name_list) {
-                            ans = true;
-                            for (j of i) {
-                                if (count(word,j)>1){
-                                    ans = false;
-                                }
-                            }
-                            ans_list.push(ans);
-                        }
-                        for (i in name_list){
-                            for (j of name_list[i]){
-                                if (count(name_list[i],j)>1){
-                                    ans_list[i] = true;
-                                }
-                            }
-                        }
-                        for (i in data){
-                            if (ans_list[i]==true){
-                                console.log(data[i])
-                            }
-                        }
-                        count_false(ans_list);
+                var middle = []
+                for (i of data){
+                    middle.push(i.slice(1,2));
+                }
+                var ans = [];
+                for (i of middle){
+                    if (count(middle,i) == 1){
+                        ans.push(true);
+                    }else{
+                        ans.push(false);
                     }
+                }
+                for (i in ans){
+                    if (ans[i] == true){
+                        console.log(data[i]);
+                    }
+                }
+                count_false(ans);
+            }
+
 
             function count(word,find_word){
                 find = 0;

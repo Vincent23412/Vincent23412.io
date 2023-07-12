@@ -2,9 +2,14 @@
 # Find out the nth term in this sequence
 
 def get_number(index):
-    seq = [0, 4, 3, 7, 6, 10, 9, 13, 12, 16, 15]
-    print(seq[index])
-# your code here
+    seq = [0] * (index+1)
+    for i in range(index) :
+        if i % 2 == 0 :
+            seq[i+1] = seq[i] + 4
+        else :
+            seq[i+1] = seq[i] - 1
+    print(seq[-1])
+
 
 
 get_number(1) # print 4

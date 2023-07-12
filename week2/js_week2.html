@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>js_1</title>
+    </head>
+    <body>
+        <script>
+            console.log('task1');
+            // 找到裡面的數字、有關投票、合法的字
+
+            function findAndPrint(messages){
+                var list = [];
+                for (i in messages){
+                    var num = messages[i].match(/\d+/g);
+                    if (num && num > 17){
+                        list.push(i);
+                    }
+                    if (messages[i].search('legal') != -1 || messages[i].search('vote') != -1){
+                        list.push(i);
+                    }
+                }
+                console.log(list);
+            };
+            findAndPrint({
+            "Bob":"My name is Bob. I'm 18 years old.",
+            "Mary":"Hello, glad to meet you.",
+            "Copper":"I'm a college student. Nice to meet you.",
+            "Leslie":"I am of legal age in Taiwan.",
+            "Vivian":"I will vote for Donald Trump next week",
+            "Jenny":"Good morning."
+            });
+
+            console.log('task2');
+            
+            // 獎金依據：表現高於平均：本薪*0.1 平均：本薪*0.05 低於平均：本薪*0.01
+            // 獎金依據：CEO：本薪*0.1 Engineer：本薪*0.05 Sales：本薪*0.01 
+
+
+            var per_bouns = {
+                "above average":0.1,
+                'average':0.05,
+                'below average':0.01
+            };
+            var rol_bouns = {
+                'Engineer':0.05,
+                'CEO':0.1,
+                'Sales':0.01
+            };
+
+            
+            function calculateSumOfBonus(data){
+                var info = data['employees'];
+                for (i in info){
+                    var own_salary = info[i]['salary'];
+                    if (typeof(own_salary)=='string'){
+                        own_salary = own_salary.replace(',','');
+                        if (own_salary.search('USD') != -1) {
+                            own_salary = own_salary.slice(0,-3);
+                            own_salary = Number(own_salary) * 30 ;
+                        }
+                        own_salary = Number(own_salary);
+                    }
+                    var salary = own_salary * (1 + per_bouns[info[i]['performance']]) *(1 + rol_bouns[info[i]['role']]);
+                    console.log(salary);
+                }
+            }
+            calculateSumOfBonus({
+                "employees":[
+                    {
+                    "name":"John",
+                    "salary":"1000USD",
+                    "performance":"above average",
+                    "role":"Engineer"
+                    },
+                    {
+                    "name":"Bob",
+                    "salary":60000,
+                    "performance":"average",
+                    "role":"CEO"
+                    },
+                    {
+                    "name":"Jenny",
+                    "salary":"50,000",
+                    "performance":"below average",
+                    "role":"Sales"
+                    }
+                ]
+            }); // call calculateSumOfBonus function
+
+            console.log('task3');
+            // 先把中間名稱取出來，再看看出現幾次
+
+
+            function func(...data){
+                var middle = []
+                for (i of data){
+                    middle.push(i.slice(1,2));
+                }
+                var ans = [];
+                for (i of middle){
+                    if (count(middle,i) == 1){
+                        ans.push(true);
+                    }else{
+                        ans.push(false);
+                    }
+                }
+                for (i in ans){
+                    if (ans[i] == true){
+                        console.log(data[i]);
+                    }
+                }
+                count_false(ans);
+            }
+
+
+            function count(word,find_word){
+                find = 0;
+                for (i of word) {
+                    if (i == find_word){
+                        find += 1;
+                    }
+                }
+                return find;
+            }
+
+
+            function count_false(list){
+                var count = 0;
+                for (i of list){
+                    if (i == false){
+                        count += 1;
+                    }
+                }
+                if (count == list.length){
+                    console.log('沒有');
+                }
+            }
+            func("彭大牆", "王明雅", "吳明"); // print 彭大牆
+            func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花"); // print 林花花
+            func("郭宣雅", "林靜宜", "郭宣恆", "林靜花"); // print 沒有
+
+            console.log('task4');
+            // 創造出串列，取出最後一個
+
+
+            function getNumber(index){
+                var list = [0];
+                for (let i = 0; i<index; i++){
+                    list.push(0);
+                    if (i%2==0){
+                        list[i+1] = list[i] + 4; 
+                    }else{
+                        list[i+1] = list[i] - 1;
+                    }
+                }  
+                console.log(list[list.length-1]);
+                }
+
+            getNumber(1); // print 4
+            getNumber(5); // print 10
+            getNumber(10); // print 15
+        </script>
+    </body>
+</html>
