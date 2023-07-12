@@ -129,3 +129,27 @@ def get_number(index):
 get_number(1) # print 4
 get_number(5) # print 10
 get_number(10) # print 15
+
+
+print('-----')
+print('task5')
+
+
+def find_index_of_car(seats, status, number):
+    # 先找出status=1而且位置夠的，然後再回傳購的最小值
+    sort = []
+    for i in range(len(seats)) :
+        if status[i] == 1 and seats[i] >= number:
+            sort.append(seats[i]-number)
+        else :
+            sort.append(10000)
+    print(sort)
+    if len(set(sort)) == 1 :
+        print(-1)
+    else : 
+        print(sort.index(min(sort)))
+
+
+find_index_of_car([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2) # print 4
+find_index_of_car([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4) # print -1
+find_index_of_car([4, 6, 5, 8], [0, 1, 1, 1], 4) # print 2

@@ -159,6 +159,53 @@
             getNumber(1); // print 4
             getNumber(5); // print 10
             getNumber(10); // print 15
+
+
+            console.log('task5');
+
+            // 先找出status=1而且位置夠的，然後再回傳購的最小值
+
+            function findIndexOfCar(seats, status, number){
+                var sort = [];
+                for (var i = 0;i < seats.length; i++){
+                    if (status[i]==1 && seats[i]>=number){
+                        sort.push(seats[i]-number);
+                    }else{
+                        sort.push(10000);
+                    }
+                }
+                var sort_set = new Set(sort); 
+                if (sort_set.size != 1){
+                    console.log(Find(sort,min(sort_set)));
+                }else{
+                    console.log(-1);
+                }
+            }
+
+
+            function Find(list,word){
+                for (var i=0; i<list.length; i++){
+                    if (list[i] == word){
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            function min(list){
+                var Min = 10000;
+                for (i of list){
+                    if (i<Min){
+                        Min = i;
+                    }
+                }
+                return Min;
+            }
+
+            findIndexOfCar([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2); // print 4
+            findIndexOfCar([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4); // print -1
+            findIndexOfCar([4, 6, 5, 8], [0, 1, 1, 1], 4); // print 2
+
         </script>
     </body>
 </html>
