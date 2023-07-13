@@ -51,7 +51,7 @@ def calculate_sum_of_bonus(data):
     # 獎金依據：表現高於平均：本薪*0.1 平均：本薪*0.05 低於平均：本薪*0.01
     # 獎金依據：CEO：本薪*0.1 Engineer：本薪*0.05 Sales：本薪*0.01
 
-
+    sum_bouns = []
     for i in data['employees'] :
         final_sum = 0
         i['salary'] = str(i['salary']).replace(',','')
@@ -59,8 +59,8 @@ def calculate_sum_of_bonus(data):
             final_sum = int(i['salary'][:-3]) * 30 * bouns_performance[i['performance']] + int(i['salary'][:-3]) * 30 * bouns_role[i['role']]
         else :
             final_sum = int(i['salary']) * bouns_performance[i['performance']] +  int(i['salary']) *bouns_role[i['role']]
-
-        print(final_sum)
+        sum_bouns.append(final_sum)
+    print(sum(sum_bouns))
 calculate_sum_of_bonus({
     "employees":[
         {
