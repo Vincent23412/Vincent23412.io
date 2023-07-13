@@ -50,6 +50,7 @@
             
             function calculateSumOfBonus(data){
                 var info = data['employees'];
+                var total = []
                 for (i in info){
                     var own_salary = info[i]['salary'];
                     if (typeof(own_salary)=='string'){
@@ -60,9 +61,14 @@
                         }
                         own_salary = Number(own_salary);
                     }
-                    var salary = own_salary * (1 + per_bouns[info[i]['performance']]) *(1 + rol_bouns[info[i]['role']]);
-                    console.log(salary);
+                    var salary = own_salary * per_bouns[info[i]['performance']]  + own_salary *  rol_bouns[info[i]['role']];
+                    total.push(salary);
                 }
+                var total_sum = 0;
+                for (i of total){
+                    total_sum += i;
+                }
+                console.log(total_sum);
             }
             calculateSumOfBonus({
                 "employees":[
