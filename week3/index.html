@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <title>week3</title>
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <style>
+            body{
+                margin: 0px;
+                border: 0px;
+            }
+            table {
+                border-collapse: collapse;
+            }
+                
+            td {
+                border: 20px solid white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="frame">
+            <div class="left">My website</div>
+            <div class="right">
+                <div class="item">item1</div>
+                <div class="item">item2</div>
+                <div class="item">item3</div>
+                <div class="item">item4</div>
+                <img class="list" src="./list.png">
+            </div>
+        </div>
+        <div class="main">
+            <div class="title">
+                Welcome to my homepage
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div class="content">
+                <div class="top_content">
+                    <div class="top_picture">
+                        <img id='top_pic1' src="./星空.jpg" width="80px" height="50px" class="top">
+                        <div id='top1' style="padding-left: 10px;">title 1</div>
+                    </div>
+                    <div class="top_picture">
+                        <img id='top_pic2' src="./星空.jpg" width="80px" height="50px" class="top">
+                        <div id='top2' style="padding-left: 10px;">title 2</div>
+                    </div>
+                    <div class="top_picture_3">
+                        <img id='top_pic3' src="./星空.jpg" width="80px" height="50px" class="top">
+                        <div id='top3' style="padding-left: 10px;">title 3</div>
+                    </div>
+                </div>
+                <div class="top_content">
+                    <div class="button_picture">
+                        <img id='top_pic4' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top4' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic5' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top5' class="button_text">tle 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic6' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top6' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic7' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top7' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic8' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top8' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic9' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top9' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic10' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top10' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic11' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top11' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic12' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top12' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic13' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top13' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic14' src="./星空.jpg" width='180px' height="150px" class="button">
+                        <div id='top14' class="button_text">title 2</div>
+                    </div>
+                    <div class="button_picture">
+                        <img id='top_pic15' src="./星空.jpg" width='180px' height="150px"class="button">
+                        <div id='top15' class="button_text">title 2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            url = 'https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json'
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                let info = data['result']['results'];
+                let name = [];
+                let pictures = [];
+                for (i of info){
+                    name.push(i['stitle']);
+                    let picture = i['file'];
+                    let index = picture.toLowerCase().indexOf('jpg');
+                    pictures.push(picture.slice(0,index+3));
+                }
+                for (let i=1;i<16;i++){
+
+                    // 文字處理
+                    var textNode = document.createTextNode(name[i]);
+
+                    let change_text_id = 'top'
+                    change_text_id += i.toString()
+
+                    var divElement = document.getElementById(change_text_id);
+
+                    while (divElement.firstChild) {
+                        divElement.removeChild(divElement.firstChild);
+                    }
+
+                    divElement.appendChild(textNode);
+
+
+
+                    // 圖片處理
+                    let change_pic_id = 'top_pic'
+                    change_pic_id += i.toString()
+
+                    // 获取要更改图片 URL 的 <img> 元素
+                    var imgElement = document.getElementById(change_pic_id);
+
+                    // 设置新的图片 URL
+                    var newImageUrl = pictures[i];
+                    console.log(name[i],pictures[i]);
+                    // 更新 <img> 元素的 src 属性
+                    imgElement.src = newImageUrl;
+
+
+                }
+
+                // 圖片處理
+                
+            })
+            .catch(error => {
+                // 处理错误
+                console.error('请求出错:', error);
+            });
+
+
+
+
+        </script>
+    </body>
+</html>
