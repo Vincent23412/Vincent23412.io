@@ -30,7 +30,7 @@ try:
         local.append(i['address'][5:8])
         lon.append(i['longitude'])
         lat.append(i['latitude'])
-        jpg.append(i['file'].split('jpg')[0] + 'jpg')
+        jpg.append(i['file'].lower().split('jpg')[0] + 'jpg')
     
     
 except Exception as e:
@@ -82,13 +82,12 @@ except Exception as e:
     
 with open('mrt.csv','w',encoding='utf-8') as f :
     for i,j in info.items() :
-        word = f"{i},"
+        word = f"{i}"
         for k in j :
-            word += k
             word += ','
+            word += k
         word += '\n'
         f.write(word)
-
 
 import requests
 from bs4 import BeautifulSoup

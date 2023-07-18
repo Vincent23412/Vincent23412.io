@@ -120,12 +120,12 @@
                 for (let i=1;i<16;i++){
 
                     // 文字處理
-                    var textNode = document.createTextNode(name[i]);
+                    let textNode = document.createTextNode(name[i]);
 
                     let change_text_id = 'top'
                     change_text_id += i.toString()
 
-                    var divElement = document.getElementById(change_text_id);
+                    let divElement = document.getElementById(change_text_id);
 
                     while (divElement.firstChild) {
                         divElement.removeChild(divElement.firstChild);
@@ -140,10 +140,10 @@
                     change_pic_id += i.toString()
 
                     // 获取要更改图片 URL 的 <img> 元素
-                    var imgElement = document.getElementById(change_pic_id);
+                    let imgElement = document.getElementById(change_pic_id);
 
                     // 设置新的图片 URL
-                    var newImageUrl = pictures[i];
+                    let newImageUrl = pictures[i];
                     console.log(name[i],pictures[i]);
                     // 更新 <img> 元素的 src 属性
                     imgElement.src = newImageUrl;
