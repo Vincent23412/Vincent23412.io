@@ -1,3 +1,5 @@
+##############輸入負數還會繼續跑
+
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -44,6 +46,15 @@ def logout() :
     session['log'] = False
     return redirect('/')
 
-
+@app.route('/square')
+def cal_square():
+    cal_number = request.args.get('number')
+    return render_template('cal.html',result=int(cal_number)**2)
 
 app.run(port=3000)
+
+
+
+
+
+
