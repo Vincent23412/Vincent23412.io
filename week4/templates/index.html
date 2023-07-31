@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            index
+        </title>
+        <link rel="stylesheet" href="..\static\css\index.css">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> -->
+    </head>
+    <body style="border: 0px; margin: 0px;">
+        <div class="top">
+            <div style="font-size: 30px;">
+                歡迎光臨，請輸入帳號密碼
+            </div>
+        </div>
+        <div style="background-color: yellow; height: 300px;">
+            <div style="background-color: green;display: flex; justify-content: center;align-items: end;height: 20%;">
+                <div style="margin-top: 20px;"> 
+                    登入系統
+                </div>
+            </div>
+            <form action="/signin" method="POST">
+                <div class="buttom">
+                    <div>帳號  </div>
+                    <div style="margin-left: 10px;">
+                        <input type="text" name="account">
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div>密碼  </div>
+                    <div style="margin-left: 10px;">
+                        <input type="text" name="passward">
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div>同意條款</div>
+                    <input type="checkbox" id="agree">
+                </div>
+                <div class="buttom">
+                    <button type="button" onclick="check()">登入</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            function check(){
+                let checkbox = document.getElementById('agree');
+                if (checkbox.checked != true){
+                    alert('please check the checkbox first');
+                }else {
+                    // 使用者已勾選同意條款，可提交表單
+                    document.querySelector('form').submit();
+                }
+            }
+        </script>
+    </body>
+</html>

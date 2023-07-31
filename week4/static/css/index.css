@@ -1,0 +1,14 @@
+.top{
+    display: flex;
+    justify-content: center;
+    background-color: blue;
+    height: 200px;
+    align-items: center;
+}
+
+.buttom{
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
