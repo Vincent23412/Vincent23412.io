@@ -39,7 +39,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'test2','test','test',0,'2023-08-02 16:58:07'),(2,'name1','test1','test1',0,'2023-08-02 16:58:45'),(3,'name2','test2','test2',0,'2023-08-02 16:58:47'),(4,'name3','test3','test3',0,'2023-08-02 16:58:49'),(5,'name4','test4','test4',0,'2023-08-03 15:46:31');
+INSERT INTO `member` VALUES (1,'test2','test','test',0,'2023-08-03 17:12:02'),(2,'name1','test1','test1',0,'2023-08-03 17:12:02'),(3,'name2','test2','test2',0,'2023-08-03 17:12:02'),(4,'name3','test3','test3',0,'2023-08-03 17:12:02'),(5,'name4','test4','test4',0,'2023-08-03 17:12:02');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,8 +56,10 @@ CREATE TABLE `message` (
   `content` varchar(255) NOT NULL,
   `like_count` int unsigned NOT NULL DEFAULT '0',
   `TIME` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`),
+  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +68,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (1,1,'hello',0,'2023-08-03 16:13:21'),(2,3,'hi',0,'2023-08-03 16:13:21'),(3,5,'welcome',0,'2023-08-03 16:13:21'),(4,1,'你好',0,'2023-08-03 16:13:21');
+INSERT INTO `message` VALUES (1,1,'hello',0,'2023-08-03 17:21:22');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -79,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-03 16:57:56
+-- Dump completed on 2023-08-03 17:32:14
