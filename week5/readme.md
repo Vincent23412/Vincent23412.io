@@ -1,4 +1,4 @@
--- TASK 2 database 
+# TASK 2 CREATE DATABASE TABLE
 SHOW databases;
 CREATE database website;
 USE website;
@@ -16,8 +16,7 @@ CREATE table member(
 ![image](https://github.com/Vincent23412/Vincent23412.github.io/assets/87458133/857251e3-c95c-4211-885a-b18ee2520932)
 
 
-
--- TASK 3 insert 
+# TASK 3 INSERT
 INSERT INTO member(name,username,password) VALUES('name','test','test');
 INSERT INTO member(name,username,password) VALUES('name1','test1','test1');
 INSERT INTO member(name,username,password) VALUES('name2','test2','test2');
@@ -49,7 +48,7 @@ UPDATE member SET name='test2' where username='test' ;
 ![image](https://github.com/Vincent23412/Vincent23412.github.io/assets/87458133/33f176c0-af84-4753-8bec-c324c93accef)
 
 
--- TASK 4 count
+# TASK 4 COUNT
 SELECT COUNT(*) FROM member;
 ![image](https://github.com/Vincent23412/Vincent23412.github.io/assets/87458133/f23827db-539f-4d5c-b41e-be149bf05a0d)
 
@@ -59,7 +58,7 @@ SELECT SUM(follower_count) FROM member;
 -- 平均 
 SELECT AVG(follower_count) FROM member;
 
--- TASK 5 外鍵
+# TASK 5 FOREIGN KEY JOIN
 CREATE TABLE message(
 	id BIGINT PRIMARY KEY auto_increment,
     member_id BIGINT NOT NULL,
