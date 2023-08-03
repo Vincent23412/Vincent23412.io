@@ -46,10 +46,9 @@ def logout() :
     session['log'] = False
     return redirect('/')
 
-@app.route('/square')
-def cal_square():
-    cal_number = request.args.get('number')
-    return render_template('cal.html',result=int(cal_number)**2)
+@app.route('/square/<num>')
+def cal_square(num):
+    return render_template('cal.html',result=int(num)**2)
 
 app.run(port=3000)
 

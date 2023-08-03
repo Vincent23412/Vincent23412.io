@@ -47,15 +47,13 @@
                 計算正整數的平方
             </div>
         </div>
-        <form action="/square" id="cal_num">
-            <div style="display: flex;justify-content: center;align-items: center;">
-                <div style="margin-right: 10px;">正整數</div>
-                <input type="text" name="number" id="number">
-            </div>
-            <div style="display: flex;justify-content: center;align-items: center;margin-top: 10px;">
-                <button type="button" onclick="check_number()">送出</button>
-            </div>
-        </form>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div style="margin-right: 10px;">正整數</div>
+            <input type="text" id="number">
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;margin-top: 10px;">
+            <button type="button" onclick="check_number()">送出</button>
+        </div>
         <script>
             function check(){
                 let checkbox = document.getElementById('agree');
@@ -72,7 +70,8 @@
                 if (cal_number < 0){
                     alert('請輸入正數');
                 }else{
-                    document.getElementById('cal_num').submit();
+                    url = `/square/${cal_number}`;
+                    window.location.href = url;
                 }
             }
         </script>
