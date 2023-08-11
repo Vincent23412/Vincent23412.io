@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            index
+        </title>
+        <link rel="stylesheet" href="..\static\css\index.css">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> -->
+    </head>
+    <body style="border: 0px; margin: 0px;">
+        <div class="top">
+            <div style="font-size: 30px;">
+                歡迎光臨，請輸入帳號密碼
+            </div>
+        </div>
+        <div style="background-color: yellow; height: 300px;">
+            <div style="background-color: green;display: flex; justify-content: center;align-items: end;height: 20%;">
+                <div style="margin-top: 20px;"> 
+                    註冊帳號
+                </div>
+            </div>
+            <form action="/signup" method="POST" id="signup_manager">
+                <div class="buttom">
+                    <div>姓名  </div>
+                    <div style="margin-left: 10px;">
+                        <input type="text" name="name" id="signup_name">
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div>帳號  </div>
+                    <div style="margin-left: 10px;">
+                        <input type="text" name="account" id="signup_account">
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div>密碼  </div>
+                    <div style="margin-left: 10px;">
+                        <input type="text" name="passward" id="signup_password">
+                    </div>
+                </div>
+                <div class="buttom">
+                    <button type="button" onclick="check_all()">註冊</button>
+                </div>
+            </form>
+        </div>
+        <br>
+
+
+        <div style="background-color: yellow; height: 300px;">
+            <div style="background-color: green;display: flex; justify-content: center;align-items: end;height: 20%;">
+                <div style="margin-top: 20px;"> 
+                    登入系統
+                </div>
+            </div>
+            <form action="/signin" method="POST" id="account_manager">
+                <div class="buttom">
+                    <div>帳號  </div>
+                    <div style="margin-left: 10px;">
+                        <input type="text" name="account">
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div>密碼  </div>
+                    <div style="margin-left: 10px;">
+                        <input type="text" name="passward">
+                    </div>
+                </div>
+                <div class="buttom">
+                    <div>同意條款</div>
+                    <input type="checkbox" id="agree">
+                </div>
+                <div class="buttom">
+                    <button type="button" onclick="check()">登入</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            function check(){
+                let checkbox = document.getElementById('agree');
+                if (checkbox.checked != true){
+                    alert('please check the checkbox first');
+                }else {
+                    // 使用者已勾選同意條款，可提交表單
+                    document.getElementById('account_manager').submit();
+                }
+            }
+
+            function check_all(){
+                let name = document.getElementById('signup_name').value;
+                let account = document.getElementById('signup_account').value;
+                let password = document.getElementById('signup_password').value;
+                console.log(name,account,password);
+                if ((name==undefined) & (account==undefined) & (password==undefined)){
+                    alert('未輸入完畢');
+                }else {
+                    document.getElementById('signup_manager').submit();
+                }
+            }
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+

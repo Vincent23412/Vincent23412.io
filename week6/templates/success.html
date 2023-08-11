@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            succsee
+        </title>
+        <link rel="stylesheet" href="..\static\css\index.css">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> -->
+    </head>
+    <body style="border: 0px; margin: 0px;">
+        <div class="top">
+            <div style="font-size: 30px;">
+                歡迎光臨，這是會員頁
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;height: 100px;">
+            <div style="font-size: 25px;">
+                {{ member }}，歡迎登入系統
+            </div>
+        </div>
+
+        <div style="display: flex;justify-content: center;align-items: center;height: 100px;">
+            <a href="/signout">登出系統</a>
+        </div>
+
+        <hr>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div style="font-size: 25px;">
+                快來留言吧
+            </div>
+        </div>
+        <form action="/createMessage" id="content_manager">
+            <div class="buttom">
+                <div>內容  </div>
+                <div style="margin-left: 10px;">
+                    <input type="text" name="content">
+                </div>
+            </div>
+            <div class="buttom">
+                <button>輸入</button>
+            </div>
+        </form>
+        <hr>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <ul>
+                {% for message in messages %}
+                    <div><strong>{{ message.name }}</strong> : {{ message.content }}</div>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </body>
+</html>
