@@ -19,7 +19,7 @@ def login() :
         conn = pymysql.connect(
             host='localhost',
             user='root',
-            password='Vincent1030',
+            password=密碼,
             database='customer',
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
@@ -47,7 +47,7 @@ def signin() :
         conn = pymysql.connect(
             host='localhost',
             user='root',
-            password='Vincent1030',
+            password=密碼,
             database='customer',
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
@@ -74,7 +74,7 @@ def signup() :
         conn = pymysql.connect(
             host='localhost',
             user='root',
-            password='Vincent1030',
+            password=密碼,
             database='customer',
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
@@ -100,7 +100,7 @@ def update() :
         conn = pymysql.connect(
             host='localhost',
             user='root',
-            password='Vincent1030',
+            password=密碼,
             database='customer',
             charset='utf8mb4',
             cursorclass=pymysql.cursors.DictCursor
