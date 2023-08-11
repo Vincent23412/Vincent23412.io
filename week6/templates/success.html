@@ -44,10 +44,23 @@
         <div style="display: flex;justify-content: center;align-items: center;">
             <ul>
                 {% for message in messages %}
-                    <div><strong>{{ message.name }}</strong> : {{ message.content }}</div>
+                <form id="delete_manger" style="margin-left: 20px;"></form>
+                    <div style="display: flex;">
+                        <strong name= message.name>{{ message.name }}</strong>
+                        : <span name=message.content>{{ message.content }}</span>
+                        <button type="button" style="margin-bottom: 10px;" onclick="check('{{ message.name }}','{{ message.content }}')">X</button>
+                    </div>
+                </form>                    
                 {% endfor %}
             </ul>
         </div>
-
+    <script>
+        function check(name,content){
+            if (confirm("Are you sure you want to delete this item?")) {
+                const url = `/deleteMessage?name=${name}&content=${content}`;
+                window.location.href = url;
+            }
+        }
+    </script>
     </body>
 </html>

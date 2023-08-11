@@ -87,7 +87,6 @@ def signup() :
     except Exception as e:
         return redirect('/error?messages=帳號已被註冊')
 
-
 @app.route('/signout')
 def logout() :
     session['log'] = False
@@ -114,8 +113,27 @@ def update() :
     except Exception as e:
         return redirect('/error?messages=未知錯誤')
 
-
-
+@app.route('/deleteMessage')
+def delete() :
+    name = request.args.get('name')
+    content = request.args.get('content')
+    conn = pymysql.connect(
+        user='root',
+        password='Vincent1030',
+        database='customer',
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+    try :
+        sql = f'''DELETE FROM message WHERE name='{name}' AND content='{content}';'''
+        print(sql)
+        with conn.cursor() as cur :
+            cur.execute(sql)
+            conn.commit()  # 提交變更
+            return redirect(request.referrer)
+    except Exception as e:
+        print(e)
+        return redirect('/error?messages=未知錯誤')
 
 app.run(port=3000,debug=True)
 
