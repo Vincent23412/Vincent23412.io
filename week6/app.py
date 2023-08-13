@@ -142,5 +142,29 @@ def update() :
     except Exception as e:
         print(e)
         return redirect('/error?messages=未知錯誤')
+    
+#刪除留言
+@app.route('/deleteMessage')
+def delete() :
+    name = request.args.get('name')
+    content = request.args.get('content')
+    conn = pymysql.connect(
+        user='root',
+        password="Vincent1030",
+        database='customer',
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+    try :
+        
+        sql = '''DELETE FROM message WHERE content=%s AND member_id = (SELECT id FROM member where name = %s);'''
+        data = (content,name)
+        with conn.cursor() as cur :
+            cur.execute(sql,data)
+            conn.commit()  # 提交變更
+            return redirect(request.referrer)
+    except Exception as e:
+        print(e)
+        return redirect('/error?messages=未知錯誤')
 
 app.run(port=3000,debug=True)
