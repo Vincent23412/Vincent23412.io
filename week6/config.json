@@ -2,6 +2,6 @@
     "config" :{
         "host":"localhost",
         "user":"root",
-        "password":"Vincent1030",
+        "password":密碼,
         "port":"5432"
     }
