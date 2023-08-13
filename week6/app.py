@@ -77,7 +77,27 @@ def signup() :
     name = request.form['name']
     account = request.form['account']
     password = request.form['passward']
+    #確認帳號有無重複
     try :
+        conn = pymysql.connect(
+            host='localhost',
+            user='root',
+            password=密碼,
+            database='customer',
+            charset='utf8mb4',
+            cursorclass=pymysql.cursors.DictCursor
+        )
+        sql = '''SELECT name FROM member'''
+        with conn.cursor() as cur :
+            cur.execute(sql)
+            data = cur.fetchall()
+        name_list = []
+        for i in data :
+            name_list.append(i["name"])
+        print(name_list)
+        if name in name_list :
+            return redirect('/error?messages=帳號已被註冊')
+    #新增帳號
         conn = pymysql.connect(
             host='localhost',
             user='root',
@@ -125,3 +145,5 @@ def update() :
     except Exception as e:
         print(e)
         return redirect('/error?messages=未知錯誤')
+
+app.run(port=3000,debug=True)
