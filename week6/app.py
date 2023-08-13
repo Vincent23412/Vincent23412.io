@@ -150,7 +150,7 @@ def delete() :
     content = request.args.get('content')
     conn = pymysql.connect(
         user='root',
-        password="Vincent1030",
+        password=密碼,
         database='customer',
         charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor
