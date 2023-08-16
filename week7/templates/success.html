@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            succsee
+        </title>
+        <link rel="stylesheet" href="..\static\css\index.css">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"> -->
+    </head>
+    <body style="border: 0px; margin: 0px;">
+        <div class="top">
+            <div style="font-size: 30px;">
+                歡迎光臨，這是會員頁
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;height: 100px;">
+            <div style="font-size: 25px;">
+                {{ member }}，歡迎登入系統
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;height: 100px;">
+            <a href="/signout">登出系統</a>
+        </div>
+        <hr>
+
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div style="font-size: 25px;">
+                查詢會員姓名
+            </div>
+        </div>
+        <div class="buttom">
+            <div style="display: flex;align-items: end;margin-right: 10px;">
+                <input type="text" id="username">
+            </div>
+            <div onclick="check_name()" class="buttom">
+                <button>查詢</button>
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div style='font-size: 20px;'id="find_name">
+            </div>
+        </div>
+
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div style="font-size: 25px;">
+                更新我的姓名
+            </div>
+        </div>
+        <div class="buttom">
+            <div style="display: flex;align-items: end;margin-right: 10px;">
+                <input type="text" id="update_username">
+            </div>
+            <div onclick="update_name()" class="buttom">
+                <button>更新</button>
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div style='font-size: 20px;'id="update_name">
+            </div>
+        </div>
+
+        <hr>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <div style="font-size: 25px;">
+                快來留言吧
+            </div>
+        </div>
+        <form action="/createMessage" id="content_manager">
+            <div class="buttom">
+                <div>內容  </div>
+                <div style="margin-left: 10px;">
+                    <input type="text" name="name">
+                </div>
+            </div>
+            <div class="buttom">
+                <button>輸入</button>
+            </div>
+        </form>
+        <hr>
+        <div style="display: flex;justify-content: center;align-items: center;">
+            <ul>
+                {% for message in messages %}
+                <form id="delete_manger" style="margin-left: 20px;"></form>
+                    <div style="display: flex;">
+                        <strong name= message.name>{{ message.name }}</strong>
+                        : <span name=message.content>{{ message.content }}</span>
+                        <button type="button" style="margin-bottom: 10px;" onclick="check('{{ message.name }}','{{ message.content }}')">X</button>
+                    </div>
+                </form>                    
+                {% endfor %}
+            </ul>
+        </div>
+    <script>
+        function check(name,content){
+            if (confirm("Are you sure you want to delete this item?")) {
+                const url = `/deleteMessage?name=${name}&content=${content}`;
+                window.location.href = url;
+            }
+        }
+        function check_name(){
+            let name = document.getElementById("username").value;
+            let find_name = document.getElementById('find_name');
+            const url = `/api/member?username=${name}`
+            fetch(url)
+            .then(response => response.json())  // 解析回傳的 JSON 資料
+            .then(data => {
+                console.log(data['data']['name']);  // 顯示解析後的 JSON 資料
+                find_name.textContent = data['data']['name'];
+            })
+            .catch(error => {
+                find_name.textContent = "發生錯誤";
+            });
+        }
+        function update_name(){
+            let update_name = document.getElementById("update_username").value;
+            let find_name = document.getElementById('update_name');
+
+            const url = 'http://127.0.0.1:3000//api/member';  // 替換成你的 API 的 URL
+            const data = {
+                name: update_name
+            };
+
+            fetch(url, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(Object.keys(data));  // 解析回傳的 JSON 資料
+                if (Object.keys(data) == "ok"){
+                    find_name.textContent = "更新成功";
+                }else{
+                    find_name.textContent = '更新失敗';
+                }
+            })
+            .catch(error => {
+                find_name.textContent = '發生錯誤';
+            });
+
+        }
+    </script>
+    </body>
+</html>

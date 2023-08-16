@@ -1,0 +1,8 @@
+{
+    "config" :{
+        "host":"localhost",
+        "user":"root",
+        "password":密碼,
+        "port":"5432"
+    }
+}
