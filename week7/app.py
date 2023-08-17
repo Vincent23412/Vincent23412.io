@@ -74,6 +74,7 @@ def signin() :
             session['log'] = True
             session['username'] = name
             session['member_id'] = id
+            session['account'] = account
             return redirect(f"/member")
     except Exception as e:
         session['log'] = False
@@ -178,12 +179,11 @@ def delete() :
         print(e)
         return redirect('/error?messages=未知錯誤')
     
-
+####查詢和更新用帳號
 #查詢會員
 @app.route('/api/member')
 def search() :
-    username = request.args.get('username')
-    print(username)
+    account = request.args.get('account')
     conn = pymysql.connect(
     host=db_config['host'],
     user=db_config['user'],
@@ -193,24 +193,14 @@ def search() :
     cursorclass=pymysql.cursors.DictCursor
     )
     try :
-        sql = '''SELECT COUNT(*) as count FROM member WHERE name = %s'''
-        data = (username)
+        sql = '''SELECT id,name FROM member WHERE account = %s'''
+        data = (account)
         with conn.cursor() as cur :
             cur.execute(sql, data)
-            result = cur.fetchone()  
-            count = result['count']  
-            if count >= 1 :
-                sql = '''SELECT id,name FROM member WHERE name = %s'''
-                with conn.cursor() as cur :
-                    cur.execute(sql, data)
-                    result = cur.fetchone()
-                    print(result)
-                    return jsonify({"data":result})
+            result = cur.fetchone()
+            print(result)
+            return jsonify({"data":result})
 
-            else :
-                return jsonify({
-                            "data": None 
-                        })
     except Exception as e:
         print(e)
         return redirect('/error?messages=未知錯誤')

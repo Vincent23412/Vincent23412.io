@@ -30,7 +30,7 @@
         </div>
         <div class="buttom">
             <div style="display: flex;align-items: end;margin-right: 10px;">
-                <input type="text" id="username">
+                <input type="text" id="account">
             </div>
             <div onclick="check_name()" class="buttom">
                 <button>查詢</button>
@@ -98,9 +98,9 @@
             }
         }
         function check_name(){
-            let name = document.getElementById("username").value;
+            let account = document.getElementById("account").value;
             let find_name = document.getElementById('find_name');
-            const url = `/api/member?username=${name}`
+            const url = `/api/member?account=${account}`
             fetch(url)
             .then(response => response.json())  // 解析回傳的 JSON 資料
             .then(data => {
