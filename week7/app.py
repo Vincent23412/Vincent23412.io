@@ -155,7 +155,7 @@ def update() :
         print(e)
         return redirect('/error?messages=未知錯誤')
 
-#刪除留言 暫時不用
+#刪除留言
 @app.route('/deleteMessage')
 def delete() :
     name = request.args.get('name')
@@ -211,8 +211,7 @@ def update_member():
         # 解析 JSON 格式的 Request Body
         request_data = request.json
         new_name = request_data.get('name')
-        
-        old_name = session.get('username','unknown')
+        account = session.get('account','unknown')
         conn = pymysql.connect(
         host=db_config['host'],
         user=db_config['user'],
@@ -221,9 +220,9 @@ def update_member():
         charset='utf8mb4',
         cursorclass=pymysql.cursors.DictCursor
         )
-        sql = '''UPDATE member SET name = %s WHERE name = %s'''
+        sql = '''UPDATE member SET name = %s WHERE account = %s'''
         with conn.cursor() as cur:
-            cur.execute(sql, (new_name, old_name))  # 請替換 old_name 為你的需求
+            cur.execute(sql, (new_name, account))  
             conn.commit()  # 提交變更
         
         # 成功更新時回傳成功的 JSON 回應
@@ -235,10 +234,6 @@ def update_member():
         response_data = {"error": True}
         return jsonify(response_data)
 
-@app.route('/test',methods=['PATCH'])
-def test() :
-    request_data = request.json
-    return request_data
 
 # http://127.0.0.1:3000//api/member?username=a
 
